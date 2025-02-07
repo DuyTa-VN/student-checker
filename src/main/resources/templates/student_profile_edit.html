@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://localhost:35729/livereload.js"></script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Ali Bigdeli"/>
+    <title>Cập nhật hồ sơ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://firebasestorage.googleapis.com/v0/b/noworderfoodapp-42d91.appspot.com/o/db.css?alt=media&token=334b355e-6ecf-4e5e-9041-637e791291f8"
+          rel="stylesheet"/>
+    <link href="https://firebasestorage.googleapis.com/v0/b/noworderfoodapp-42d91.appspot.com/o/stylec.css?alt=media&token=25ee6bc8-d32f-48c4-8664-d35327e34bd7"
+          rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <style>
+        .b-container {
+            min-height: 100vh;
+            background-color: white;
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
+
+        #toggle-btn {
+            background-color: #f5f5f5;
+            color: black;
+        }
+
+        #sidebar {
+            background-color: #f5f5f5;
+        }
+
+        #sidebar li a {
+            color: black;
+        }
+
+        #toggle-btn:hover {
+            background-color: #f5f5f5 !important;
+        }
+
+        #sidebar ul li.active a {
+            color: #bc2626 !important;
+        }
+
+        #sidebar ul li.active svg {
+            fill: #bc2626 !important;
+        }
+
+        #sidebar svg {
+            fill: black !important;
+        }
+
+        #sidebar {
+            width: 100%;
+        !important;
+            border-right: 1px solid #c4c4c4 !important;
+        }
+
+        #sidebar ul {
+            padding-left: 0 !important;
+        }
+
+        #sidebar a {
+            margin: 0px auto;
+        }
+
+
+        @media (max-width: 800px) {
+            #sidebar > ul {
+                grid-auto-columns: 33% !important;
+            }
+
+        }
+    </style>
+</head>
+<body>
+<div class="b-container">
+    <nav id="sidebar">
+        <ul>
+            <li>
+                <span class="logo">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/noworderfoodapp-42d91.appspot.com/o/logo-ptit-1.png?alt=media&token=4f8a3fba-0a16-4c0b-94d0-1d4b06194805">
+                </span>
+                <button onclick=toggleSidebar() id="toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                         fill="#e8eaed">
+                        <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/>
+                    </svg>
+                </button>
+            </li>
+            <li>
+                <a href="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                         fill="#000000">
+                        <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/>
+                    </svg>
+                    <span>Lịch sử điểm danh</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/student/profile-edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                         fill="#000000">
+                        <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
+                    </svg>
+                    <span>Hồ sơ</span>
+                </a>
+            </li>
+            <a href="/logout" class="d-flex align-items-center" style="padding-left: 18px;gap: 20px">
+                <i class="fas fa-sign-out-alt" style="color: black;font-size: 18px"></i>
+                <span style="color: black">Đăng xuất</span>
+            </a>
+        </ul>
+    </nav>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4 pb-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3>Chỉnh sửa hồ sơ</h3>
+                </div>
+                <form class="form-group" method="POST" action="/student/profile-edit-post" th:object="${student}">
+                    <div class="mb-3">
+                        <label class="form-label">Ma SV</label>
+                        <input class="form-control" readonly th:field="*{id}" th:value="${student.id}" name="className"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Classes</label>
+                        <input class="form-control" th:field="*{className}" th:value="${student.className}"
+                               name="className"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input class="form-control" th:field="*{name}" th:value="${student.name}" name="className"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Sex</label>
+                        <select class="form-control" th:field="*{sex}">
+                            <option value="male">Nam</option>
+                            <option value="female">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input class="form-control" th:field="*{phone}" th:value="${student.phone}" name="className"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input class="form-control" th:field="*{email}" th:value="${student.email}" name="className"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập Nhật Hồ Sơ</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script>$('.toast').toast('show')</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://firebasestorage.googleapis.com/v0/b/noworderfoodapp-42d91.appspot.com/o/main.js?alt=media&token=e64dcd0f-d6b7-41e2-a964-120f3ec5d210"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script>
+    const toggleButton = document.getElementById('toggle-btn')
+    const sidebar = document.getElementById('sidebar')
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('close')
+        toggleButton.classList.toggle('rotate')
+
+        closeAllSubMenus()
+    }
+
+    function toggleSubMenu(button) {
+
+        if (!button.nextElementSibling.classList.contains('show')) {
+            closeAllSubMenus()
+        }
+
+        button.nextElementSibling.classList.toggle('show')
+        button.classList.toggle('rotate')
+
+        if (sidebar.classList.contains('close')) {
+            sidebar.classList.toggle('close')
+            toggleButton.classList.toggle('rotate')
+        }
+    }
+
+    function closeAllSubMenus() {
+        Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
+            ul.classList.remove('show')
+            ul.previousElementSibling.classList.remove('rotate')
+        })
+    }
+</script>
+</body>
+</html>
